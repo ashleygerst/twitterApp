@@ -12,8 +12,8 @@ class Twitter extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-  
-  componentDidMount(){
+
+  componentDidMount() {
     this.props.fetchSearchResults(this.state.query);
     this.handleResults();
   }
@@ -27,8 +27,8 @@ class Twitter extends Component {
         <div id='tweetContainer' className='tweetContainer'>
           <img id='image' src={item.image} />
           <div className='textContainer'>
-            <div key={item.id}>{`@${item.author}`}</div>
-            <div key={item.id}>{item.tweet}</div>
+            <div className='author' key={item.id}>{`@${item.author}`}</div>
+            <div className='tweet' key={item.id}>{item.tweet}</div>
           </div>
           <a href={item.url} />
         </div>
@@ -37,23 +37,26 @@ class Twitter extends Component {
 
     return (
       <>
-        <div className='container'>
-          <div>Tweet Feed</div>
-          <br />
-          <br />
-          <form onSubmit={this.handleSubmit}>
-            <input
-              id='search'
-              placeholder={'Search by keyword'}
-              type='text'
-              value={this.state.query}
-              onChange={this.handleChange}
-            />
-          </form>
-          <br />
-          <div className='resultContainer'>
-            {renderResults}
-            <button id='button' onClick={this.handleClick}>Load More</button>
+        <div className='twitterHeader'>Tweet Feed</div>
+        <div className='pageContainer'>
+          <div className='container'>
+            <form onSubmit={this.handleSubmit}>
+              <input
+                id='search'
+                placeholder={'Search by keyword'}
+                type='text'
+                value={this.state.query}
+                onChange={this.handleChange}
+              />
+            </form>
+            <br />
+            <div className='resultContainer'>
+              {renderResults}
+              <button id='button' onClick={this.handleClick}>Load More</button>
+            </div>
+          </div>
+          <div className='hashtagContainer'>
+            <div className='hashtagHeader'>Filter by hashtag</div>
           </div>
         </div>
       </>
@@ -88,7 +91,7 @@ class Twitter extends Component {
 
   handleClick = () => {
     this.setState({
-      resultsPerPage: this.state.resultsPerPage+5
+      resultsPerPage: this.state.resultsPerPage + 5
     })
   }
 

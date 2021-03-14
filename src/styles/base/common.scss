@@ -1,14 +1,54 @@
+.author {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+button#button {
+  text-align: center;
+  border: none;
+  background-color: white;
+  color: rgb(33, 142, 231);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  position: relative;
+  width: 600px;
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  margin-left: 30px;
+}
+
 h1 {
   font-size: 30px;
 }
 
-.small-img {
-  width: 300px;
+.hashtagContainer {
+  border: solid #c0c0c0;
+  border-width: 2px 2px;
+  box-sizing: border-box;
+  background-color: white;
+  padding: 6px;
 }
-.container {
-  position: relative;
-  width: 600px;
-  margin: 0 auto;
+
+.hashtagHeader {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+img#image {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
 }
 
 input#search {
@@ -21,8 +61,8 @@ input#search {
   text-indent: 20px;
   padding: 6px;
   font-family: Arial, Helvetica, sans-serif;
-  border-color: #c0c0c0;
-  border-style: solid;
+  border: solid #c0c0c0;
+  border-width: 2px 2px;
 }
 
 input#search:focus {
@@ -31,38 +71,52 @@ input#search:focus {
   text-indent: 0px
 }
 
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
 .resultContainer {
   overflow: auto;
   background-color: white;
-  box-shadow: 1px 1px 1px 1px #c0c0c0;
+  border: solid #c0c0c0;
+  border-width: 2px 2px;
   width: 100%;
 }
 
-button#button {
-  border: none;
-  background-color: white;
-  color: rgb(33, 142, 231);
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+.small-img {
+  width: 300px;
 }
 
-img#image {
-  border-radius: 50%;
-}
-
-#tweetContainer div.content {
+.textContainer {
+  margin-left: 10px;
   display: flex;
-  margin-left: 30;
+  flex-direction: column;
+}
+
+.tweet {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 
 .tweetContainer {
   display: flex;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.textContainer {
-  display: flex;
-  flex-direction: column;
+.tweetContainer:nth-child(odd) {
+  background-color:  #ebe5e5;
+}
+
+.twitterHeader {
+  margin-left: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
 }
