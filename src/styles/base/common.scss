@@ -1,21 +1,72 @@
+@supports (display: flex) {
+  @media only screen and (max-width: 1274px) {
+    .hashtagContainer {
+      order: 2;
+      width: 100vw;
+    }
+    .resultContainer {
+      order: 3;
+      width: 100vw;
+    }
+    input#search {
+      margin-left: 15px;
+      width: 90vw;
+      height: 40px;
+      padding-left: 10px;
+      background-position: 1.85%;
+    }
+    .twitterHeader {
+      margin-left: 15px;
+    }
+    .pageContainer {
+      display: flex;
+      justify-content: center;
+    }
+  }
+    @media only screen and (min-width: 1275px) {
+      .hashtagContainer {
+        margin-left: 15px;
+        width: 250px;
+        float: right;
+        margin-top: -47px;
+      }
+      input#search {
+        width: 500px;
+        height: 30px;
+        padding-left: 6px;
+        background-position: 1%;
+      }
+      .pageContainer {
+        margin: auto;
+        width: 60%;
+      }
+      .resultContainer {
+        max-width: 500px;
+      }
+    }
+  }
+
 .author {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Trebuchet MS';
   font-size: 12px;
   margin-bottom: 5px;
   font-weight: bold;
+  color: rgb(78, 78, 78);
 }
 
 button#button {
-  text-align: center;
+  position:relative;
+  top:50%; 
+  left:50%;
+  margin: 0px -70px; 
   border: none;
   background-color: white;
   color: rgb(33, 142, 231);
-  padding: 15px 32px;
-  text-align: center;
+  padding: 15px 32px; 
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-family: 'Trebuchet MS';
 }
 
 .container {
@@ -26,43 +77,81 @@ button#button {
   margin-bottom: 0px;
   margin-left: 30px;
 }
+.contentContainer {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  max-width: 900px;
+}
 
 h1 {
   font-size: 30px;
 }
 
+.hashtag {
+  background-color: rgb(224, 244, 252);
+  margin: 4px;
+  font-size: 10px;
+  color: hsl(213, 48%, 64%);
+  font-family: 'Trebuchet MS';
+  border: solid rgb(222, 241, 248);
+  border-width: 1px 1px;
+  border-radius: 15px;
+  width: fit-content;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.hashtags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
 .hashtagContainer {
-  border: solid #c0c0c0;
-  border-width: 2px 2px;
-  box-sizing: border-box;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
   background-color: white;
-  padding: 6px;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .hashtagHeader {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Trebuchet MS';
   font-size: 14px;
   font-weight: bold;
+  margin-bottom: 10px;
+  color: rgb(95, 93, 93);
 }
+
 
 img#image {
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
 }
 
 input#search {
+  order: 1;
   box-sizing: border-box;
-  width: 100%;
   background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
-  background-size: contain;
+  background-size: 15px;
   background-repeat: no-repeat;
   background-color: white;
   text-indent: 20px;
-  padding: 6px;
-  font-family: Arial, Helvetica, sans-serif;
+  // padding: 6px;
+  font-family: 'Trebuchet MS';
+  font-size: 10px;
   border: solid #c0c0c0;
-  border-width: 2px 2px;
+  color: rgb(129, 126, 126);
+  border-width: .5px .5px;
+  margin-bottom: 15px;
+  margin-right: 10px;
 }
 
 input#search:focus {
@@ -71,19 +160,30 @@ input#search:focus {
   text-indent: 0px
 }
 
-.pageContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  margin-top: 20px;
+.pageContainerMobile {
+  margin: 0;
 }
 
 .resultContainer {
+  position: relative;
   overflow: auto;
   background-color: white;
-  border: solid #c0c0c0;
-  border-width: 2px 2px;
-  width: 100%;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+  padding-bottom: 15px;
+}
+
+.resultInfo {
+  font-family: 'Trebuchet MS';
+  font-size: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 5px;
+  color: rgb(95, 93, 93);
+}
+
+.searchTerm {
+  font-weight: bold;
+  color:hotpink;
 }
 
 .small-img {
@@ -97,9 +197,10 @@ input#search:focus {
 }
 
 .tweet {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Trebuchet MS';
   font-size: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  color: rgb(109, 108, 108);
 }
 
 .tweetContainer {
@@ -108,15 +209,17 @@ input#search:focus {
   padding-right: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
+  background-color: rgb(248, 248, 248);
 }
 
 .tweetContainer:nth-child(odd) {
-  background-color:  #ebe5e5;
+  background-color: rgb(255, 255, 255);
 }
 
 .twitterHeader {
-  margin-left: 30px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Trebuchet MS';
   font-size: 14px;
+  color: rgb(95, 93, 93);
   font-weight: bold;
+  margin-bottom: 15px;
 }
