@@ -12,8 +12,8 @@ class Twitter extends Component {
       filterHashtag: '',
       loading: true
     };
+    this.throttleHandleFetch = debounce(this.throttleHandleFetch.bind(this), 500)
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   render() {
@@ -71,13 +71,13 @@ class Twitter extends Component {
             <div className='header'>
               <div className='twitterHeader'>Tweet Feed</div>
               <form onSubmit={this.handleSubmit}>
-              <input
-                id='search'
-                placeholder={'Search by keyword'}
-                type='text'
-                value={this.state.query}
-                onChange={this.handleSubmit}
-              />
+                <input
+                  id='search'
+                  placeholder={'Search by keyword'}
+                  type='text'
+                  value={this.state.query}
+                  onChange={this.handleSubmit}
+                />
               </form>
             </div>
             {this.state.query && this.state.eachResult.length > 0 && (
@@ -104,27 +104,37 @@ class Twitter extends Component {
   }
 
   handleResults = (results) => {
-    const resultArray = [];
-    (results.statuses || []).forEach(searchResult => {
-      const url = searchResult.user.url;
-      const author = searchResult.user.screen_name;
-      const tweet = searchResult.text;
-      const image = searchResult.user.profile_image_url;
-      const hashtag = searchResult.entities.hashtags.map(hash => hash.text)
-      const id = searchResult.id;
-      const eachResult = {
-        url,
-        author,
-        tweet,
-        image,
-        hashtag,
-        id
-      }
-      resultArray.push(eachResult);
-    });
-    this.setState({
-      eachResult: resultArray
-    })
+    if (!!results) {
+      const resultArray = [];
+      (results.statuses || []).forEach(searchResult => {
+        const url = searchResult.user.url;
+        const author = searchResult.user.screen_name;
+        const tweet = searchResult.text;
+        const image = searchResult.user.profile_image_url;
+        const hashtag = searchResult.entities.hashtags.map(hash => hash.text)
+        const id = searchResult.id;
+        const eachResult = {
+          url,
+          author,
+          tweet,
+          image,
+          hashtag,
+          id
+        }
+        resultArray.push(eachResult);
+      });
+      this.setState({
+        eachResult: resultArray
+      })
+    }
+  }
+
+  throttleHandleFetch = () => {
+    if (this.state.query.length > 0) {
+      this.props.fetchSearchResults(this.state.query).then((results) => {
+        this.handleResults(results)
+      })
+    }
   }
 
   handleSubmit = (event) => {
@@ -134,10 +144,8 @@ class Twitter extends Component {
       resultsPerPage: 5
     })
     event.preventDefault();
-    if (this.props.fetchSearchResults) {
-      this.props.fetchSearchResults(this.state.query).then((results) => {
-        this.handleResults(results)
-      })
+    if (!!this.props.fetchSearchResults) {
+      this.throttleHandleFetch(event)
     }
   }
 
