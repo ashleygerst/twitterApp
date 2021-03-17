@@ -106,7 +106,7 @@ class Twitter extends Component {
     if (!!results) {
       const resultArray = [];
       (results.statuses || []).forEach(searchResult => {
-        const url = searchResult.user.url;
+        const url = searchResult.entities.urls.map(url => url.url);
         const author = searchResult.user.screen_name;
         const tweet = searchResult.text;
         const image = searchResult.user.profile_image_url;
