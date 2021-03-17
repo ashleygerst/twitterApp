@@ -8,6 +8,10 @@
       order: 3;
       width: 100vw;
     }
+    .noResultContainer {
+      order: 3;
+      width: 100vw;
+    }
     input#search {
       margin-left: 15px;
       width: 90vw;
@@ -42,6 +46,9 @@
       }
       .resultContainer {
         max-width: 500px;
+      }
+      .noResultContainer {
+        width: 500px;
       }
     }
   }
@@ -136,6 +143,12 @@ img#image {
   height: 35px;
 }
 
+img#magoo {
+  width: 100px;
+  height: 100px;
+  align-self: center;
+}
+
 input#search {
   order: 1;
   box-sizing: border-box;
@@ -169,6 +182,25 @@ input#search:focus {
 
 .pageContainerMobile {
   margin: 0;
+}
+
+.noResults {
+  font-family: 'Trebuchet MS';
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: rgb(95, 93, 93);
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.noResultContainer {
+  display: flex;
+  position: relative;
+  align-content: center;
+  flex-direction: column;
+  padding-bottom: 15px;
 }
 
 .resultContainer {
