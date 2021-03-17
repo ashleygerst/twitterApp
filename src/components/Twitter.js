@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
 
-const eachResult = []
 class Twitter extends Component {
   constructor(props) {
     super(props);
     this.state = {
       query: '',
-      eachResult,
+      eachResult: [],
       resultsPerPage: 5,
       filterHashtag: '',
       loading: true
     };
-    this.throttleHandleFetch = debounce(this.throttleHandleFetch.bind(this), 500)
+    this.debounceHandleFetch = debounce(this.debounceHandleFetch.bind(this), 500)
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -34,24 +33,24 @@ class Twitter extends Component {
     const { eachResult, resultsPerPage } = this.state;
     const indexOfLastResult = resultsPerPage;
     const indexOfFirstResult = indexOfLastResult - resultsPerPage;
-    const boldTerm = (
-      <strong>{this.state.query}</strong>
-    )
     const currentResults = eachResult.filter(result => {
       return !this.state.filterHashtag || (result.hashtag.findIndex(tag => tag === this.state.filterHashtag) > -1)
     }).slice(indexOfFirstResult, indexOfLastResult)
     const renderResults = currentResults.map(item => {
+      const http = 'http';
+      const httpIndex = item.tweet.lastIndexOf(http);
+      const slicedTweet = item.tweet.slice(0, httpIndex)
       return (
         <div key={item.id} id='tweetContainer' className='tweetContainer'>
           <img id='image' src={item.image} />
           <div className='textContainer'>
             <div className='author'>{`@${item.author}`}</div>
-            <div className='tweet'>{item.tweet}</div>
+            <div className='tweet'>{slicedTweet}</div>
+            <a className='link' href={item.url}>{item.url}</a>
             <div className='hashtags'>
               {item.hashtag.map(renderHashTagButtons)}
             </div>
           </div>
-          <a href={item.url} />
         </div>
       )
     });
@@ -129,7 +128,7 @@ class Twitter extends Component {
     }
   }
 
-  throttleHandleFetch = () => {
+  debounceHandleFetch = () => {
     if (this.state.query.length > 0) {
       this.props.fetchSearchResults(this.state.query).then((results) => {
         this.handleResults(results)
@@ -145,7 +144,7 @@ class Twitter extends Component {
     })
     event.preventDefault();
     if (!!this.props.fetchSearchResults) {
-      this.throttleHandleFetch(event)
+      this.debounceHandleFetch(event)
     }
   }
 
