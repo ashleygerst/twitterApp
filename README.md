@@ -1,17 +1,4 @@
 
-<p align="center">
-    <h3 align="center">Simple React Webpack Babel Starter Kit<br></h3>
-</p>
-
-
-<p align="center">
-  Tired of complicated starters with more than 250MB of dependencies which are hard to understand and modify? This is for you!
-  This is a simple react application without redux, stylesheets or other set frameworks. It's only meant to get you started and the rest if up to you. Our goal for is to keep things simple and give you the freedom to select your own frameworks to add on top of this one.
-</p>
-
-### Demo
-https://murmuring-fjord-36537.herokuapp.com/
-
 ### Prerequisites
 * You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
 
@@ -38,25 +25,12 @@ npm run dev
 Open the web browser to `http://localhost:8080/`
 
 ### To test
-To run unit tests:
+1. Type in search bar
 
-```
-npm run test
-```
-
-### To build the production package
-```
-npm run build
-```
-
-### Eslint
-There is a `.eslintrc.js` config for eslint ready with React plugin.
-
-To run linting, run:
-
-```
-npm run lint
-```
-
-### Contribute
-Please contribute to the project if you know how to make it better, including this README :)
+**Expected Results**
+- if the search is valid, user will see popular results in English for their search term in .5 seconds
+- if the API does not return result for user's query, user will see a "no results" message
+- user will see message "Displaying results for" search term + number of search results
+- user can click Load More to view more than 5 results, Load More will not display if no there are no additional results 
+- user can click on a hashtag in tweet or hashtag container to filter search term by hashtag
+- user can click on tweet url to be navigated to the tweet
