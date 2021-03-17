@@ -26,6 +26,7 @@ git clone https://github.com/ReactJSResources/react-webpack-babel.git
 
 ```
 npm install
+npm rebuild node-sass
 ```
 
 * Run development server:
