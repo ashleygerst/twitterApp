@@ -9,7 +9,8 @@ class Twitter extends Component {
       eachResult: [],
       resultsPerPage: 5,
       filterHashtag: '',
-      loading: true
+      loading: true,
+      noResults: false
     };
     this.debounceHandleFetch = debounce(this.debounceHandleFetch.bind(this), 500)
     this.handleChange = this.handleChange.bind(this);
@@ -79,7 +80,7 @@ class Twitter extends Component {
                 />
               </form>
             </div>
-            {this.state.query && this.state.eachResult.length > 0 && (
+            {this.state.query && this.state.eachResult.length > 0 ? (
               <>
                 <div className='resultContainer'>
                   <div className='resultInfo'>Displaying results for <strong>{this.state.query}</strong> ({!this.state.filterHashtag ? eachResult.length : currentResults.length})</div>
@@ -95,7 +96,19 @@ class Twitter extends Component {
                   </div>
                 }
               </>
-            )}
+            ) : this.state.noResults ? (
+              <>
+                <div className='noResultContainer'>
+                  <div className='noResults'>Sorry!
+                    <br />We didn't find any tweets that contain your search.
+                    <br />Please try again.
+                  </div>
+                  <img id='magoo' src='../images/magoo.png' />
+                </div>
+              </>
+            ) :
+                null
+            }
           </div>
         </div>
       </>
@@ -103,7 +116,7 @@ class Twitter extends Component {
   }
 
   handleResults = (results) => {
-    if (!!results) {
+    if (results.statuses.length > 0) {
       const resultArray = [];
       (results.statuses || []).forEach(searchResult => {
         const url = searchResult.entities.urls.map(url => url.url);
@@ -123,7 +136,12 @@ class Twitter extends Component {
         resultArray.push(eachResult);
       });
       this.setState({
-        eachResult: resultArray
+        eachResult: resultArray,
+        noResults: false
+      })
+    } else {
+      this.setState({
+        noResults: true
       })
     }
   }
